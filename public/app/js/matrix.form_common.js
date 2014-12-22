@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$('input[type=checkbox],input[type=radio],input[type=file]').uniform();
+	$('input[type=checkbox],input[type=radio]').uniform();
 	$('select').select2();
 	$('.colorpicker').colorpicker();
 	$('.datepicker').datepicker();
@@ -64,8 +64,8 @@ $(document).ready(function() {
     });
 
     /*Currency spinner*/
-    $( "#spinner4" ).spinner({ 
-    	numberFormat: "C" 
+    $( "#spinner4" ).spinner({
+    	numberFormat: "C"
     });
 
 	//------------- Colorpicker -------------//
@@ -101,43 +101,6 @@ $(document).ready(function() {
 	$("#select1").select2();
 	$("#select2").select2();
 
-	//--------------- Dual multi select ------------------//
-	$.configureBoxes();
-
-	//--------------- Tinymce ------------------//
-	$('textarea.tinymce').tinymce({
-		// Location of TinyMCE script
-		script_url : 'plugins/forms/tiny_mce/tiny_mce.js',
-
-		// General options
-		theme : "advanced",
-		plugins : "autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,advlist",
-
-		// Theme options
-		theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
-		theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
-		theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
-		theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak",
-		theme_advanced_toolbar_location : "top",
-		theme_advanced_toolbar_align : "left",
-		theme_advanced_statusbar_location : "bottom",
-		theme_advanced_resizing : true,
-
-		// Example content CSS (should be your site CSS)
-		content_css : "css/main.css",
-
-		// Drop lists for link/image/media/template dialogs
-		template_external_list_url : "lists/template_list.js",
-		external_link_list_url : "lists/link_list.js",
-		external_image_list_url : "lists/image_list.js",
-		media_external_list_url : "lists/media_list.js",
-
-		// Replace values for the template plugin
-		template_replace_values : {
-			username : "SuprUser",
-			staffid : "991234"
-		}
-	});
 
 	//Boostrap modal
 	$('#myModal').modal({ show: false});
@@ -186,7 +149,7 @@ $('#stat5').sparkline(positive,{
 	type: 'bar'
 });
 
-$('#stat6').sparkline(positive, { 
+$('#stat6').sparkline(positive, {
 	width: 70,//Width of the chart - Defaults to 'auto' - May be any valid css width - 1.5em, 20px, etc (using a number without a unit specifier won't do what you want) - This option does nothing for bar and tristate chars (see barWidth)
 	height: 20,//Height of the chart - Defaults to 'auto' (line height of the containing tag)
 	lineColor: '#88bbc8',//Used by line and discrete charts to specify the colour of the line drawn as a CSS values string

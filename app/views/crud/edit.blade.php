@@ -31,9 +31,12 @@
 						<label class="control-label" for="ipt_{{$key}}">{{$item['title']}}</label>
 
 						<div class="controls" id="container_{{$key}}">
-							<input class="need_uploader" value="{{$data[$key] or ''}}" id="hid_{{$key}}" type="file"
-								   name="{{$key}}"/>
-							<input type="file" name="file_upload" id="file_upload" />
+							<script>
+								var key = '{{$key}}';
+							</script>
+							<div id="queue"></div>
+							<input type="file"   name="file_upload" id="file_upload" />
+							<input type="hidden" name="{{$key}}" id="{{'image_'.$key}}" />
 							<div id="preview_{{$key}}">
 								@if(isset($data[$key])&&$data[$key])
 								<img src="{{$data[$key]}}">
@@ -79,7 +82,8 @@
 					@elseif($item['type']=='select')
 					<div class="control-group">
 						<label class="control-label"  for="ipt_{{$key}}">{{$item['title']}}</label>
-						<select class="form-control" name="{{$key}}">
+						<div class="controls">
+						<select class="span4" name="{{$key}}">
 							@foreach($item['select-items'] as $select_key=>$select_item)
 							@if(isset($data[$key])&&$data[$key]==$select_key)
 							<option selected value="{{$select_key}}">{{$select_item}}</option>
@@ -88,6 +92,7 @@
 							@endif
 							@endforeach
 						</select>
+						</div>
 					</div>
 					@else
 					<div class="control-group">
@@ -123,16 +128,30 @@
 </div>
 @stop
 
-@section('inline_scripts')
-
+@section('js')
+@parent
 <script type="text/javascript">
-
-	$(function () {
+	$(document).ready(function() {
+		// === Sidebar navigation === //
+		<?php $timestamp = time();?>
 		$('#file_upload').uploadify({
-			'swf'      : '{{APP_PUBLIC_PATH}}/uploadify.swf',
-			'uploader' : '{{URL::action('FileController@upload')}}'
-			// Put your options here
+			'formData'     : {
+				'timestamp' : '<?php echo $timestamp;?>',
+				'token'     : '<?php echo md5('unique_salt' . $timestamp);?>'
+			},
+			'swf': '{{APP_PUBLIC_PATH}}/uploadify.swf',
+			'uploader': '{{URL::Action('FileController@upload')}}',
+			'onUploadSuccess' : function(file, data, response) {
+				alert('The file ' + file.name + ' was successfully uploaded with a response of :' + data);
+				$("#image_"+key).attr('value',data);
+				var html = "<img width='60' src='"+data+"' />";
+				$("#preview_"+key).append(html);
+			},
+			'onUploadError' : function(file, errorCode, errorMsg, errorString) {
+				alert('The file ' + file.name + ' could not be uploaded: ' + errorString);
+			}
 		});
+
 		$('.textarea_editor').each(function () {
 			var id = $(this).attr('id');
 			$("#" + id).wysihtml5().each(function () {

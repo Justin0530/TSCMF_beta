@@ -1,12 +1,9 @@
 
 $(document).ready(function(){
-
-	
-	
 	// === Sidebar navigation === //
-	
 	$('.submenu > a').click(function(e)
 	{
+
 		e.preventDefault();
 		var submenu = $(this).siblings('ul');
 		var li = $(this).parents('li');
