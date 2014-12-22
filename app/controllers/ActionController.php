@@ -11,13 +11,15 @@ class ActionController extends BaseController {
     public function getLogin()
     {
         $password = Hash::make('secret');
+        $message = urldecode(Input::get('message',''));
         //echo $password;
         if (Auth::check()) {
             return Redirect::to(URL::action('HomeController@getIndex'));
         }
 
         return View::make('Action.login', array(
-            'title' => '登录TSCMF管理平台',
+            'title'     => '登录TSCMF管理平台',
+            'message'   => $message,
         ));
     }
 
@@ -32,7 +34,8 @@ class ActionController extends BaseController {
         if (Auth::attempt(array('username' => Input::get('username'), 'password' => Input::get('password')), Input::get('remember', 'off') == 'on' ? true : false)) {
             return Redirect::intended(URL::action('HomeController@getIndex'));
         } else {
-            return Redirect::to(URL::action('ActionController@getLogin'));
+            $message = "用户名或密码错误，请重试";
+            return Redirect::to(URL::action('ActionController@getLogin').'?message='.urlencode($message));
         }
     }
 

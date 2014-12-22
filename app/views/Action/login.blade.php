@@ -27,6 +27,13 @@
                         </div>
                     </div>
                 </div>
+                <div class="control-group" id="message" style="display:none">
+                    <div class="controls">
+                        <div class="main_input_box">
+                            <span class="">{{$message}}</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="form-actions">
                     <span class="pull-left"><a href="#" class="flip-link btn btn-info" id="to-recover"> 忘记密码?</a></span>
                     <span class="pull-right"><a id="loginA" href="javascript:void(0);" class="btn btn-success" > 登陆</a></span>
@@ -52,5 +59,13 @@
         <script src="{{APP_PUBLIC_PATH}}/js/matrix.login.js"></script>
 
     </body>
+<script language="javascript">
+    $(document).ready(function(){
+        if('{{$message}}')
+        {
+            $("#message").show();
+        }
+    })
+</script>
 
 </html>
