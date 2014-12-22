@@ -27,9 +27,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface
 
 
 	public static $admin_config = [
-		'title'             => '用户',
+		'title'             => '用户管理',
 		'description'       => '',
-		'router'            => 'user',
+		'router'            => '/user',
 		'router_controller' => 'UserController',
 		'items'             => [
 			'id' => [
@@ -50,7 +50,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
             'mobile'    => [
                 'title'     => '联系电话',
                 'type'      => 'text',
-                'validator' => 'required|mobile'
+                'validator' => 'required|Integer'
             ],
 			'password' => [
 				'title'  => '密码',
@@ -60,6 +60,24 @@ class User extends Eloquent implements UserInterface, RemindableInterface
 			'avatar'   => [
 				'title' => '头像',
 				'type'  => 'image',
+			],
+			'type'      => [
+				'title' => '用户类型',
+				'type'  => 'select',
+				'select-items' => [
+					'1'  => '管理员',
+					'2'  => '网站用户'
+				]
+			],
+			'status'      => [
+				'title' => '用户状态',
+				'type'  => 'select',
+				'select-items' => [
+					'1'  => '正常',
+					'2'  => '禁言',
+					'3'  => '禁止访问',
+					'4'  => '删除',
+				]
 			],
 		],
 	];
