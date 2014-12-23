@@ -31,6 +31,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
 		'description'       => '',
 		'router'            => '/user',
 		'router_controller' => 'UserController',
+		'template_index'    => 'crud.index',
 		'items'             => [
 			'id' => [
 				'title'     => '序号',
@@ -76,7 +77,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
 					'1'  => '正常',
 					'2'  => '禁言',
 					'3'  => '禁止访问',
-					'4'  => '删除',
+					'4'  => '已删除',
 				]
 			],
 		],

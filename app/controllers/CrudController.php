@@ -13,9 +13,8 @@ class CrudController extends BaseController
 	public function index()
 	{
 		$class        = $this->Model;
-		$data         = $class::all();
+		$data         = $class::paginate(1);
 		$admin_config = get_class_vars($class)['admin_config'] ? : [];
-
 		$template = isset($admin_config['template_index']) ? $admin_config['template_index'] : 'crud.index';
 
 		return View::make($template, [
@@ -77,6 +76,7 @@ class CrudController extends BaseController
 				Session::flash('messages', $messages);
 			}
 		}
+		var_dump($data);exit();
 		$class = $this->Model;
 		$obj   = new $class;
 		$this->saveObject($obj, $data, $admin_config);
@@ -162,7 +162,6 @@ class CrudController extends BaseController
 
 		}
 		$class = $this->Model;
-
 		$obj = $class::find($id);
 		$this->saveObject($obj, $data, $admin_config);
 

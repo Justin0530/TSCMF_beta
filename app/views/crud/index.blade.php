@@ -23,42 +23,40 @@
                                 <th>{{$item['title']}}</th>
                                 @endif
                                 @endforeach
-                                <th >查看/编辑/删除</th>
+                                <th width="120">查看/编辑/删除</th>
                             </tr>
                         </thead>
                         <tbody>
                         @foreach($data as $value)
                         <tr>
-                            @foreach($config['items'] as $key=>$item)
-                            @if(!isset($item['hidden'])||$item['hidden']!==true)
-                            @if($item['type']=='image')
-                            <td>
-                                @if($value[$key])
-                                <img src="http://baicheng-cms.qiniudn.com/{{$value[$key]}}-w36" alt=""/>
+                            @foreach($config['items'] as $key => $item)
+                                @if(!isset($item['hidden'])||$item['hidden']!==true)
+                                    @if($item['type']=='image')
+                                    <td>
+                                        @if($value[$key])
+                                        <img src="{{$value[$key]}}" width="40" alt="image"/>
+                                        @endif
+                                    </td>
+                                    @elseif($item['type']=='select')
+                                    <td>{{$item['select-items'][$value[$key]?$value[$key]:'1']}}</td>
+                                    @else
+                                    <td>{{$value[$key]}}</td>
+                                    @endif
                                 @endif
-                            </td>
-                            @elseif($item['type']=='select')
-                            <td>{{$item['select-items'][$value[$key]]}}</td>
-                            @else
-                            <td>{{$value[$key]}}</td>
-                            @endif
-                            @endif
                             @endforeach
                             <td>
-
-
-                                <a class="btn btn-minier btn-success"
+                                <a class="btn btn-mini btn-success"
                                    href="{{ URL::to($config['router'].'/'. $value->id) }}?{{Request::getQueryString()}}">
                                     查看
                                 </a>
-                                <a class="btn btn-minier btn-info"
+                                <a class="btn btn-mini btn-info"
                                    href="{{ URL::to($config['router'].'/' . $value->id . '/edit') }}?{{Request::getQueryString()}}">
                                     编辑
                                 </a>
                                 {{ Form::open(array('url' => $config['router'].'/' . $value->id.'?'.Request::getQueryString(), 'class' =>
                                 'pull-right')) }}
                                 {{ Form::hidden('_method', 'DELETE') }}
-                                {{ Form::submit('删除', array('class' => 'btn btn-minier btn-warning')) }}
+                                {{ Form::submit('删除', array('class' => 'btn btn-mini btn-warning')) }}
                                 {{ Form::close() }}
                             </td>
                         </tr>
@@ -68,6 +66,7 @@
                     <!-- /widget-body -->
                 </div>
             </div>
+
         </div>
     </div>
 </div>

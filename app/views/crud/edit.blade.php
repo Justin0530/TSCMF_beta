@@ -36,15 +36,13 @@
 							</script>
 							<div id="queue"></div>
 							<input type="file"   name="file_upload" id="file_upload" />
-							<input type="hidden" name="{{$key}}" id="{{'image_'.$key}}" />
+							<input type="hidden" name="{{$key}}" id="{{'ipt_'.$key}}" />
 							<div id="preview_{{$key}}">
 								@if(isset($data[$key])&&$data[$key])
 								<img src="{{$data[$key]}}">
 								@endif
 							</div>
 						</div>
-						<input class="need_uploader" value="{{$data[$key] or ''}}" id="hid_{{$key}}" type="hidden"
-							   name="{{$key}}"/>
 					</div>
 					
 					@elseif($item['type']=='editor')
@@ -142,8 +140,8 @@
 			'swf': '{{APP_PUBLIC_PATH}}/uploadify.swf',
 			'uploader': '{{URL::Action('FileController@upload')}}',
 			'onUploadSuccess' : function(file, data, response) {
-				alert('The file ' + file.name + ' was successfully uploaded with a response of :' + data);
-				$("#image_"+key).attr('value',data);
+				//alert('The file ' + file.name + ' was successfully uploaded with a response of :' + data);
+				$("#ipt_"+key).attr('value',data);
 				var html = "<img width='60' src='"+data+"' />";
 				$("#preview_"+key).append(html);
 			},
