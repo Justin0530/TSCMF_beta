@@ -5,15 +5,18 @@ function getPermission(obj,des,url)
 {
     alert('url'+url);
     alert(obj.value);
-    return false;
-    $.post(
-        url,
-        {
-            grade_id:obj.valueOf()
-        },
-        function (data) //回传函数
-        {
-            alert(data);
+
+    $.ajax({
+        type: "POST",
+        url: url,
+        dataType: "json",
+        data:{param:obj.value},
+        success: function(data){
+            $('#ipt_'+des).empty(); //清空resText里面的所有内容
+            $('#ipt_'+des).append("<option value='0'>请选择</option>");
+            $.each(data, function(i, item) {
+                $('#ipt_'+des).append("<option value='"+i+"'>"+item+"</option>");
+            });
         }
-    );
+    });
 }
