@@ -11,9 +11,11 @@ Route::controller('/test','TestController');
 
 Route::group(array('before' => 'auth'), function () {
     Route::get('/','HomeController@getIndex');
+    Route::any('/permission/getPermission','PermissionController@getPermission');
     Route::controller('/home', 'HomeController');
     CrudController::initRouter([
         User::$admin_config,
         Role::$admin_config,
+        Permission::getConfig(),
     ]);
 });

@@ -81,7 +81,20 @@
 					<div class="control-group">
 						<label class="control-label"  for="ipt_{{$key}}">{{$item['title']}}</label>
 						<div class="controls">
-						<select class="span4" name="{{$key}}">
+						<select class="span4" name="{{$key}}"
+								@if(array_key_exists('ajaxFunc',$item)&&$item['ajaxFunc'])
+								onchange="javascript:{{$item['ajaxFunc']}}(this,'{{$item['controlled']}}','<?php echo $item['ajaxURL'];?>');"
+								@endif
+								>
+							@if(isset($item['select-items'])&&count($item['select-items'])>0)
+								<?php $selectItems = $item['select-items'];?>
+							@else
+								<?php
+								$param = isset($data[$item['param']])?$data[$item['param']]:'';
+								$item['select-items'] = eval($item['func'].'('.$param.');');
+								?>
+							@endif
+							@if(isset($item['select-items'])&&count($item['select-items']))
 							@foreach($item['select-items'] as $select_key=>$select_item)
 							@if(isset($data[$key])&&$data[$key]==$select_key)
 							<option selected value="{{$select_key}}">{{$select_item}}</option>
@@ -89,6 +102,9 @@
 							<option value="{{$select_key}}">{{$select_item}}</option>
 							@endif
 							@endforeach
+							@else
+								<option value="">请选择</option>
+							@endif
 						</select>
 						</div>
 					</div>

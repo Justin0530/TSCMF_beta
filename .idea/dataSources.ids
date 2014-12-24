@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - tscmf@127.0.0.1" uuid="edf82196-a009-4a9a-9393-a4f3fd694752">
+    <database-info product="MySQL" version="5.6.19-0ubuntu0.14.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="tscmf"/>
+    <table name="ts_assigned_roles" schema="" catalog="tscmf" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="role_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="assigned_roles_role_id_foreign" columns="role_id" ref-table="ts_roles" ref-schema="" ref-catalog="tscmf" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="assigned_roles_user_id_foreign" columns="user_id" ref-table="ts_users" ref-schema="" ref-catalog="tscmf" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="assigned_roles_role_id_foreign" unique="false" columns="role_id"/>
+      <index name="assigned_roles_user_id_foreign" unique="false" columns="user_id"/>
+    </table>
+    <table name="ts_migrations" schema="" catalog="tscmf" type="TABLE">
+      <column name="migration" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="batch" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+    </table>
+    <table name="ts_permission_role" schema="" catalog="tscmf" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="permission_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="role_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="permission_role_role_id_foreign" columns="role_id" ref-table="ts_roles" ref-schema="" ref-catalog="tscmf" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="permission_role_permission_id_foreign" columns="permission_id" ref-table="ts_permissions" ref-schema="" ref-catalog="tscmf" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="permission_role_permission_id_foreign" unique="false" columns="permission_id"/>
+      <index name="permission_role_role_id_foreign" unique="false" columns="role_id"/>
+    </table>
+    <table name="ts_permissions" schema="" catalog="tscmf" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="display_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="permission_role_permission_id_foreign" table="ts_permission_role" schema="" catalog="tscmf" columns="permission_id"/>
+      <index name="permissions_name_unique" unique="true" columns="name"/>
+    </table>
+    <table name="ts_roles" schema="" catalog="tscmf" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="assigned_roles_role_id_foreign" table="ts_assigned_roles" schema="" catalog="tscmf" columns="role_id"/>
+      <exported-key name="permission_role_role_id_foreign" table="ts_permission_role" schema="" catalog="tscmf" columns="role_id"/>
+      <index name="roles_name_unique" unique="true" columns="name"/>
+    </table>
+    <table name="ts_users" schema="" catalog="tscmf" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" remarks="55So5oi3aWQ="/>
+      <column name="username" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12" remarks="55So5oi35ZCN"/>
+      <column name="email" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="mobile" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12" remarks="5a+G56CB"/>
+      <column name="avatar" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12" remarks="5aS05YOP5Zyw5Z2A"/>
+      <column name="type" sqlType="ENUM" precision="2" scale="0" nullable="true" jdbcType="1" remarks="55So5oi357G75Z6LKDHnrqHnkIblkZjvvIwy5piv572R56uZ55So5oi3KQ=="/>
+      <column name="status" sqlType="ENUM" precision="2" scale="0" nullable="true" jdbcType="1" def="JzAn" remarks="55So5oi354q25oCB77yIMOato+W4uO+8jDHnpoHoqIDvvIwy56aB5q2i6K6/6Zeu44CBM+WIoOmZpO+8iQ=="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" remarks="5Yib5bu65pe26Ze0"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" remarks="5pu05paw5pe26Ze0"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="assigned_roles_user_id_foreign" table="ts_assigned_roles" schema="" catalog="tscmf" columns="user_id"/>
+    </table>
+  </data-source>
+</component>

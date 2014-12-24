@@ -64,21 +64,7 @@
 <!--close-top-serch-->
 <!--sidebar-menu-->
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
-  <!--
-  <ul>
-    <li class="@if(!$parent_menu_id)active@endif"><a href="/"><i class="icon icon-home"></i> <span>控制面板</span></a> </li>
-    @foreach($menu as $key => $val)
-      <li class="submenu @if($parent_menu_id==$val['id']) active open @endif"><a href="/"><i class="{{$icon[$key]}}"></i> <span>{{$val['menu']}}</span></a>
-        @if(is_array($val['sub_menu'])&&count($val['sub_menu']))
-          <ul>
-            @foreach($val['sub_menu'] as $k => $v)
-              <li class="@if($v['id']==$sub_menu_id) active @endif"><a href="{{URL::to($v['menu_url'])}}">{{$v['menu']}}</a></li>
-            @endforeach
-          </ul>
-        @endif
-      </li>
-    @endforeach
-  </ul> -->
+
   <ul>
     <li class="active"><a href="index.html"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
     <li> <a href="charts.html"><i class="icon icon-signal"></i> <span>Charts &amp; graphs</span></a> </li>
@@ -162,7 +148,7 @@
 <script src="{{APP_PUBLIC_PATH}}/js/jquery.peity.min.js"></script>
 <script src="{{APP_PUBLIC_PATH}}/js/bootstrap-wysihtml5.js"></script>
 <script src="{{APP_PUBLIC_PATH}}/js/jquery.uploadify.js"></script>
-
+<script src="{{APP_PUBLIC_PATH}}/js/common.js"></script>
 <script type="text/javascript">
   // This function is called from the pop-up menus to transfer to
   // a different page. Ignore if the value returned is a null string:

@@ -3,6 +3,9 @@
 class CrudController extends BaseController
 {
 	protected $Model = '';
+	protected $adminConfig = [];
+
+
 
 	/**
 	 * Display a listing of the resource.
@@ -14,7 +17,7 @@ class CrudController extends BaseController
 	{
 		$class        = $this->Model;
 		$data         = $class::paginate(1);
-		$admin_config = get_class_vars($class)['admin_config'] ? : [];
+		$admin_config = $class::getConfig() ? : [];
 		$template = isset($admin_config['template_index']) ? $admin_config['template_index'] : 'crud.index';
 
 		return View::make($template, [
@@ -32,7 +35,9 @@ class CrudController extends BaseController
 	 */
 	public function create()
 	{
-		$admin_config = get_class_vars($this->Model)['admin_config'] ? : [];
+		//$admin_config = get_class_vars($this->Model)['admin_config'] ? : [];
+		$class = $this->Model;
+		$admin_config = $class::getConfig() ? : [];
 		$template     = isset($admin_config['template_edit']) ? $admin_config['template_edit'] : 'crud.edit';
 
 		return View::make($template, [
@@ -59,7 +64,8 @@ class CrudController extends BaseController
 	 */
 	public function store()
 	{
-		$admin_config = get_class_vars($this->Model)['admin_config'] ? : [];
+		$class = $this->Model;
+		$admin_config = $class::getConfig() ? : [];
 		$rules        = $this->getRules($admin_config);
 		$data         = Input::all();
 		if (count($rules)) {
@@ -77,7 +83,6 @@ class CrudController extends BaseController
 			}
 		}
 		var_dump($data);exit();
-		$class = $this->Model;
 		$obj   = new $class;
 		$this->saveObject($obj, $data, $admin_config);
 
@@ -106,10 +111,10 @@ class CrudController extends BaseController
 	 */
 	public function edit($id)
 	{
+		$class = $this->Model;
 		$pathinfo     = str_replace('/edit', '', Request::getPathInfo());
-		$admin_config = get_class_vars($this->Model)['admin_config'] ? : [];
+		$admin_config = $class::getConfig ? : [];
 		$action_path  = isset($admin_config['store_path']) ? $admin_config['store_path'] : $pathinfo;
-		$class        = $this->Model;
 		$data         = $class::find($id);
 //		print_r($data['plus_structure']);exit;
 		$data = array_merge(Request::all(), $data->toArray());
@@ -141,8 +146,8 @@ class CrudController extends BaseController
 	 */
 	public function update($id)
 	{
-
-		$admin_config = get_class_vars($this->Model)['admin_config'] ? : [];
+		$class = $this->Model;
+		$admin_config = $class::getConfig() ? : [];
 		$rules        = $this->getRules($admin_config);
 		$data         = Input::all();
 		if (count($rules)) {
@@ -177,8 +182,9 @@ class CrudController extends BaseController
 	 */
 	public function destroy($id)
 	{
-		$admin_config = get_class_vars($this->Model)['admin_config'] ? : [];
+
 		$class        = $this->Model;
+		$admin_config = $class::getConfig() ? : [];
 		$obj          = $class::find($id);
 		$obj->delete();
 
