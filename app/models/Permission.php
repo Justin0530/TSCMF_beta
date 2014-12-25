@@ -22,12 +22,13 @@ class Permission extends EntrustPermission {
         return $admin_config = [
             'title'             => '权限管理',
             'description'       => '维护系统权限列表',
-            'router'            => 'permission',
+            'router'            => '/permission',
             'router_controller' => 'PermissionController',
             'items'             => [
                 'id' => [
                     'title'     => '序号',
                     'type'      => 'int',
+                    'hidden'    => true,
                     'attr'      => 'onlyShow',
                 ],
                 'name' => [
@@ -70,7 +71,7 @@ class Permission extends EntrustPermission {
 
                 ],
                 'remark'           => [
-                    'title'        => '角色备注',
+                    'title'        => '权限备注',
                     'type'         => 'text',
                     'validator'    => 'required'
                 ],

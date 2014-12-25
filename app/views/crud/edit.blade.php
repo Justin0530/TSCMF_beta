@@ -109,11 +109,11 @@
 						</div>
 					</div>
 					@else
-					<div class="control-group">
+					<div class="control-group" @if(isset($item['hidden'])&&$item['hidden']){{"style='display:none'"}}@endif>
 						<label class="control-label"  for="ipt_{{$key}}">{{$item['title']}}</label>
 						<div class="controls">
 							<input autocomplete="false" value="{{$data[$key] or ''}}" name="{{$key}}" class="span4"
-								   type="{{$item['type']}}"
+								   type="@if(isset($item['hidden'])&&$item['hidden']){{'hidden'}}@else{{$item['type']}}@endif"
 								   id="ipt_{{$key}}"
 								   placeholder="请输入{{$item['title']}}">
 						</div>

@@ -16,6 +16,9 @@ Route::group(array('before' => 'auth'), function () {
     CrudController::initRouter([
         User::$admin_config,
         Role::$admin_config,
+        Province::$admin_config,
+        City::$admin_config,
+        Area::$admin_config,
         Permission::getConfig(),
     ]);
 });

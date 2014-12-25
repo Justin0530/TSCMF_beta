@@ -82,7 +82,6 @@ class CrudController extends BaseController
 				Session::flash('messages', $messages);
 			}
 		}
-		var_dump($data);exit();
 		$obj   = new $class;
 		$this->saveObject($obj, $data, $admin_config);
 
