@@ -51,7 +51,7 @@ class Permission extends EntrustPermission {
                     'type'      => 'string',
                     'validator' => 'required'
                 ],
-                'grade_id'         => [
+                /*'grade_id'         => [
                     'title'        => '权限级别',
                     'type'         => 'select',
                     'ajaxFunc'     => 'getPermission',
@@ -62,6 +62,12 @@ class Permission extends EntrustPermission {
                         '2'  => '二级',
                         '3'  => '三级',
                     ]
+                ],*/
+                'grade_id'         => [
+                    'title'     => '级别',
+                    'type'      => 'int',
+                    'hidden'    => true,
+                    'attr'      => 'onlyShow',
                 ],
                 'parent_id'        => [
                     'title'        => '父级权限',
@@ -82,7 +88,7 @@ class Permission extends EntrustPermission {
 
     public static function getSubPermission($grade_id='1')
     {
-        return self::where('grade_id','=',$grade_id)->lists('id','display_name');
+        return self::lists('id','display_name');
     }
 
     public function getInitConfig()

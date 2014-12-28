@@ -19,7 +19,10 @@ class PermissionController extends CrudController {
 
     public function getPermission()
     {
-        return ['dd'];
+        $param = Input::get('param','');
+        if(!$param) return Response::json([]);
+        $subPermissionList = Permission::where('grade_id','=',$param)->lists('display_name','id');
+        return Response::json($subPermissionList);
     }
 
 }

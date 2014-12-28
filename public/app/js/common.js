@@ -3,18 +3,19 @@
  */
 function getPermission(obj,des,url)
 {
-    alert('url'+url);
-    alert(obj.value);
 
     $.ajax({
         type: "POST",
-        url: url,
+        url:  url,
         dataType: "json",
         data:{param:obj.value},
         success: function(data){
+            alert(data);
             $('#ipt_'+des).empty(); //清空resText里面的所有内容
+            alert('#ipt_'+des);
             $('#ipt_'+des).append("<option value='0'>请选择</option>");
             $.each(data, function(i, item) {
+                alert(i+'====='+item);
                 $('#ipt_'+des).append("<option value='"+i+"'>"+item+"</option>");
             });
         }

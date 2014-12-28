@@ -81,7 +81,7 @@
 					<div class="control-group">
 						<label class="control-label"  for="ipt_{{$key}}">{{$item['title']}}</label>
 						<div class="controls">
-						<select class="span4" name="{{$key}}"
+						<select class="span4" id="ipt_{{$key}}" name="{{$key}}"
 								@if(array_key_exists('ajaxFunc',$item)&&$item['ajaxFunc'])
 								onchange="javascript:{{$item['ajaxFunc']}}(this,'{{$item['controlled']}}','<?php echo $item['ajaxURL'];?>');"
 								@endif

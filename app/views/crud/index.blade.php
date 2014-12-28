@@ -38,7 +38,15 @@
                                         @endif
                                     </td>
                                     @elseif($item['type']=='select')
-                                    <td>{{$item['select-items'][$value[$key]?$value[$key]:'1']}}</td>
+                                        @if(isset($item['select-items'])&&count($item['select-items'])>0)
+                                            <?php $selectItems = $item['select-items'];?>
+                                        @else
+                                            <?php
+                                            $param = isset($data[$item['param']])?$data[$item['param']]:'';
+                                            $item['select-items'] = eval($item['func'].'('.$param.');');
+                                            ?>
+                                        @endif
+                                        <td>{{$item['select-items'][$value[$key]?$value[$key]:'1']}}</td>
                                     @else
                                     <td>{{$value[$key]}}</td>
                                     @endif
