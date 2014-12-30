@@ -16,7 +16,7 @@ class CrudController extends BaseController
 	public function index()
 	{
 		$class        = $this->Model;
-		$data         = $class::paginate(1);
+		$data         = $class::paginate(Config::get('app.PAGE_SIZE','1'));
 		$admin_config = $class::getConfig() ? : [];
 		$template = isset($admin_config['template_index']) ? $admin_config['template_index'] : 'crud.index';
 

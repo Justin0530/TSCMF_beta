@@ -73,8 +73,13 @@
                     </table>
                     <!-- /widget-body -->
                 </div>
+
+
             </div>
 
+        </div>
+        <div class="pagination">
+            {{$data->links()}}
         </div>
     </div>
 </div>
