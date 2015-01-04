@@ -19,7 +19,7 @@
                         <thead>
                             <tr>
                                 @foreach($config['items'] as $key=>$item)
-                                @if(!isset($item['hidden'])||$item['hidden']!==true)
+                                @if(!isset($item['hidden'])||$item['attr']=='onlyShow'||$item['hidden']!==true)
                                 <th>{{$item['title']}}</th>
                                 @endif
                                 @endforeach
@@ -30,7 +30,7 @@
                         @foreach($data as $value)
                         <tr>
                             @foreach($config['items'] as $key => $item)
-                                @if(!isset($item['hidden'])||$item['hidden']!==true)
+                                @if(!isset($item['hidden'])||$item['attr']=='onlyShow'||$item['hidden']!==true)
                                     @if($item['type']=='image')
                                     <td>
                                         @if($value[$key])
@@ -42,11 +42,14 @@
                                             <?php $selectItems = $item['select-items'];?>
                                         @else
                                             <?php
-                                            $param = isset($data[$item['param']])?$data[$item['param']]:'';
-                                            $item['select-items'] = eval($item['func'].'('.$param.');');
+                                            $param = $value[$key];
+                                            $item['select-items'] = call_user_func($item['func']);
                                             ?>
                                         @endif
-                                        <td>{{$item['select-items'][$value[$key]?$value[$key]:'1']}}</td>
+                                        <td>{{array_key_exists($param,$item['select-items'])?$item['select-items'][$param]:''}}</td>
+                                    @elseif(isset($item['showFunc'])&&$item['showFunc'])
+                                        {{$item['showFunc'].'==='.$value[$key]}}
+                                        {{call_user_func($item['showFunc'],$value[$key])}}
                                     @else
                                     <td>{{$value[$key]}}</td>
                                     @endif

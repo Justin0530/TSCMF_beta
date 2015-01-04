@@ -112,7 +112,7 @@ class CrudController extends BaseController
 	{
 		$class = $this->Model;
 		$pathinfo     = str_replace('/edit', '', Request::getPathInfo());
-		$admin_config = $class::getConfig ? : [];
+		$admin_config = $class::getConfig() ? : [];
 		$action_path  = isset($admin_config['store_path']) ? $admin_config['store_path'] : $pathinfo;
 		$data         = $class::find($id);
 //		print_r($data['plus_structure']);exit;
@@ -153,11 +153,9 @@ class CrudController extends BaseController
 			$validator = Validator::make($data, $rules);
 			if ($validator->fails()) {
 				$messages = [];
-				foreach ($validator->messages()->all() as $message) {
-					$messages[] = [
-						'class' => 'danger',
-						'text'  => $message,
-					];
+				foreach ($validator->messages()->toArray() as $key => $message) {
+					//echo $key.'=='.array_pop($message).'<br />';
+					Session::flash($key,array_pop($message));
 				}
 				Session::flash('messages', $messages);
 
@@ -247,11 +245,18 @@ class CrudController extends BaseController
 				}
 				$obj[$key] = ($plus_structure);
 			} else {
-				$obj[$key] = $data[$key];
+				if(isset($value['isFunc'])&&$value['isFunc'])
+				{
+					$param = isset($value['isFuncParam'])?$data[$value['isFuncParam']]:'';
+					$obj[$key] = $rs = call_user_func($value['isFunc'],$param);
+				}
+				else
+				{
+					$obj[$key] = $data[$key];
+				}
 			}
 		}
 
-//		echo '<pre>';print_r($obj);exit;
 		$obj->save();
 
 		return $obj;
