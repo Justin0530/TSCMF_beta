@@ -14,8 +14,13 @@ class ProvinceController extends CrudController {
 	|	Route::get('/', 'HomeController@showWelcome');
 	|
 	*/
+    protected $pageSize = 20;
     protected $Model = 'Province';
 
+    public function __contract()
+    {
+        $this->pageSize = Config::get('app.PAGE_SIZE');
+    }
     public function index()
     {
         $class = $this->Model;

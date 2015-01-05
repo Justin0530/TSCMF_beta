@@ -207,4 +207,5 @@ return array(
 
 	'html_domain'      => 'html.tscmf.com',
 	'manager_domain'   => 'dev.tscmf.com',
+	'PAGE_SIZE'        => '20',
 );

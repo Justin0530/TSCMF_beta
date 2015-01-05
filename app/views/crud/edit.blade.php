@@ -86,37 +86,38 @@
 								onchange="javascript:{{$item['ajaxFunc']}}(this,'{{$item['controlled']}}','<?php echo $item['ajaxURL'];?>');"
 								@endif
 								>
+							<option value="0">请选择</option>
 							@if(isset($item['select-items'])&&count($item['select-items'])>0)
-								<?php echo '3333';exit(); $selectItems = $item['select-items'];?>
+								<?php $selectItems = $item['select-items'];?>
 							@else
 								<?php
 								$param = isset($data[$item['param']])?$data[$item['param']]:'';
-                                    echo 'wwww';exit();
-								$item['select-items'] = eval($item['func'].'('.$param.');');
+								$item['select-items'] = $selectItems = call_user_func($item['func']);
 								?>
 							@endif
 							@if(isset($item['select-items'])&&count($item['select-items']))
-							@foreach($item['select-items'] as $select_key=>$select_item)
-							@if(isset($data[$key])&&$data[$key]==$select_key)
-							<option selected value="{{$select_key}}">{{$select_item}}</option>
-							@else
-							<option value="{{$select_key}}">{{$select_item}}</option>
-							@endif
-							@endforeach
-							@else
-								<option value="">请选择</option>
+								@foreach($item['select-items'] as $select_key=>$select_item)
+									@if(isset($data[$key])&&$data[$key]==$select_key)
+										<option selected value="{{$select_key}}">{{$select_item}}</option>
+									@else
+										<option value="{{$select_key}}">{{$select_item}}</option>
+									@endif
+								@endforeach
 							@endif
 						</select>
 						</div>
 					</div>
 					@else
-					<div class="control-group" @if(isset($item['hidden'])&&$item['hidden']){{"style='display:none'"}}@endif>
+					<div class="control-group @if(Session::get($key)){{'error'}}@endif" @if(isset($item['hidden'])&&$item['hidden']){{"style='display:none'"}}@endif>
 						<label class="control-label"  for="ipt_{{$key}}">{{$item['title']}}</label>
 						<div class="controls">
 							<input autocomplete="false" value="{{$data[$key] or ''}}" name="{{$key}}" class="span4"
 								   type="@if(isset($item['hidden'])&&$item['hidden']){{'hidden'}}@else{{$item['type']}}@endif"
 								   id="ipt_{{$key}}"
 								   placeholder="请输入{{$item['title']}}">
+							@if(Session::get($key))
+							<span for="{{$key}}" generated="true" class="help-inline">{{Session::get($key)}}</span>
+							@endif
 						</div>
 					</div>
 					@endif

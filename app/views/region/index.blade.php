@@ -1,4 +1,4 @@
-@extends('layout.layout')
+@extends('layout.default')
 @section('content')
 <!-- PAGE CONTENT BEGINS -->
 
@@ -65,7 +65,7 @@
             </div>
             <!-- /widget-body -->
 		</div>
-        {{$data->appends($whereArr)->links();}}
+        <div class="pagination">{{$data->appends($whereArr)->links();}}</div>
 		<p style="float: right;">
             <button id="add" class="btn btn-success"><i class="icon-plus"></i></i>  增加</button>
             <button id="edit" class="btn btn-success"><i class="icon-edit"></i></i>  编辑</button>
