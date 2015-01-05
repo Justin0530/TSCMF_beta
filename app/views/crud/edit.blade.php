@@ -91,7 +91,7 @@
 								<?php $selectItems = $item['select-items'];?>
 							@else
 								<?php
-								$param = isset($data[$item['param']])?$data[$item['param']]:'';
+								$param = isset($data[$item['func']])?$data[$item['func']]:'';
 								$item['select-items'] = $selectItems = call_user_func($item['func']);
 								?>
 							@endif
