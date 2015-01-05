@@ -87,10 +87,11 @@
 								@endif
 								>
 							@if(isset($item['select-items'])&&count($item['select-items'])>0)
-								<?php $selectItems = $item['select-items'];?>
+								<?php echo '3333';exit(); $selectItems = $item['select-items'];?>
 							@else
 								<?php
 								$param = isset($data[$item['param']])?$data[$item['param']]:'';
+                                    echo 'wwww';exit();
 								$item['select-items'] = eval($item['func'].'('.$param.');');
 								?>
 							@endif
