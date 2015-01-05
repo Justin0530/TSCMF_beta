@@ -140,7 +140,6 @@ class Permission extends EntrustPermission {
         $permissionObj = Self::find($parentID);
         if($permissionObj)
         {
-            echo $parentID.'==='.$permissionObj->display_name.'<br />';exit();
             return $permissionObj->display_name;
         }
         else
