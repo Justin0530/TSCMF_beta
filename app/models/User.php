@@ -83,4 +83,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface
 		],
 	];
 
+	public static function getConfig()
+	{
+		return self::$admin_config;
+	}
 }

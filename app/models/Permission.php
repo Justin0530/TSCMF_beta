@@ -96,8 +96,8 @@ class Permission extends EntrustPermission {
 
     public static function getSubPermission($grade_id='')
     {
-
-        return self::lists('display_name','id');
+        $permissionList = self::where('grade_id','<','3')->get()->toArray();
+        return Utils::mSort($permissionList);
     }
 
     public function getInitConfig()

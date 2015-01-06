@@ -256,19 +256,6 @@ class Utils
 		return json_encode($arrRet);
 	}
 
-	// 调用命名服务接口
-	public static function callApi($api_provider, $method, $params)
-	{
-
-		// 特卖系统在名字服务中注册的关键字为Operations
-		$from_id  = ServiceInjection::system('Operations');
-		$to_id    = ServiceInjection::system($api_provider);
-		$trace_id = "${from_id}_${to_id}_${method}";
-
-		$result = ServiceInjection::send($trace_id, $from_id, $to_id, $method, $params);
-
-		return $result;
-	}
 
 	// 统一返回
 	public static function wrapReturn($code = 100000, $message = '', $data = array())
@@ -477,7 +464,6 @@ class Utils
         $rs = self::http_request($preURL);
         $rs = json_decode($rs,true);
         if($rs['code']=='100000') $uid = $rs['data']['uid'];
-        //var_dump($rs);
         return $uid;
     }
 
@@ -526,4 +512,41 @@ class Utils
     }
 
 
+	public static function mSort($menuList)
+	{
+		$first = $second = $third = array();
+		$permissionList = [];
+		if(is_array($menuList)&&count($menuList))
+		{
+			foreach($menuList as $key => $val)
+			{
+				if($val['grade_id'] == MENU_GRADE_FIRST) array_push($first,$val);
+				if($val['grade_id'] == MENU_GRADE_SECOND) array_push($second,$val);
+				if($val['grade_id'] == MENU_GRADE_THIRD) array_push($third,$val);
+			}
+
+			foreach($second as $key => $val)
+			{
+				$tmp = array();
+				foreach($third as $k => $v)
+				{
+					if($v['parent_id']==$val['id']) array_push($tmp,$v);
+				}
+				$second[$key]['sub_menu'] = $tmp;
+				unset($tmp);
+			}
+
+			foreach($first as $key => $val)
+			{
+				$permissionList[$val['id']] = $val['display_name'];
+				foreach($second as $k => $v)
+				{
+					if($val['id']==$v['parent_id'])
+						$permissionList[$v['id']] = '----'.$v['display_name'];
+				}
+			}
+		}
+
+		return $permissionList;
+	}
 }

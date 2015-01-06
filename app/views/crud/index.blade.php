@@ -19,7 +19,7 @@
                         <thead>
                             <tr>
                                 @foreach($config['items'] as $key=>$item)
-                                @if(!isset($item['hidden'])||$item['attr']=='onlyShow'||$item['hidden']!==true)
+                                @if(!isset($item['hidden'])||(isset($item['attr'])&&$item['attr']=='onlyShow')||$item['hidden']!==true)
                                 <th>{{$item['title']}}</th>
                                 @endif
                                 @endforeach
@@ -30,7 +30,7 @@
                         @foreach($data as $value)
                         <tr>
                             @foreach($config['items'] as $key => $item)
-                                @if(!isset($item['hidden'])||$item['attr']=='onlyShow'||$item['hidden']!==true)
+                                @if(!isset($item['hidden'])||(isset($item['attr'])&&$item['attr']=='onlyShow')||$item['hidden']!==true)
                                     @if($item['type']=='image')
                                     <td>
                                         @if($value[$key])
@@ -38,11 +38,11 @@
                                         @endif
                                     </td>
                                     @elseif($item['type']=='select')
+                                        <?php  $param = $value[$key];?>
                                         @if(isset($item['select-items'])&&count($item['select-items'])>0)
                                             <?php $selectItems = $item['select-items'];?>
                                         @else
                                             <?php
-                                            $param = $value[$key];
                                             $item['select-items'] = call_user_func($item['func']);
                                             ?>
                                         @endif

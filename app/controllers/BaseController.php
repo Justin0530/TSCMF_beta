@@ -19,6 +19,26 @@ class BaseController extends Controller {
     {
         if (Auth::check())
         {
+            $permissionKey = 'PermissionList_'.Session::getId();
+            Cache::forget($permissionKey);
+            if(!Cache::has($permissionKey))
+            {
+                $permissionList = Permission::where('grade_id','<','3')->get()->toArray();
+                $permissionList = $this->menuSort($permissionList);
+                Cache::add($permissionKey,$permissionList,Config::get('cache.cache_time'));
+            }
+
+            View::share('menu',Cache::get($permissionKey));
+            $currentURL = Route::currentRouteAction();
+            //echo $currentURL;exit();
+            if($currentURL)
+            {
+                $currentMenuInfo = Permission::where('action_url','=',$currentURL)->first();
+                //var_dump($currentMenuInfo);exit();
+                if(is_object($currentMenuInfo))
+                    View::share('currentURL',$currentMenuInfo);
+            }
+
             return Redirect::action('HomeController@getIndex');
         }
         else
@@ -75,44 +95,37 @@ class BaseController extends Controller {
 
     protected function menuSort($menuList)
     {
-        $first = $second = $third = array();
+
+        $permissionList = $first = $second = $third = array();
         if(is_array($menuList)&&count($menuList))
         {
             foreach($menuList as $key => $val)
             {
-                if($val['menu_grade'] == MENU_GRADE_FIRST) array_push($first,$val);
-                if($val['menu_grade'] == MENU_GRADE_SECOND) array_push($second,$val);
-                if($val['menu_grade'] == MENU_GRADE_THIRD) array_push($third,$val);
+                if($val['grade_id'] == MENU_GRADE_FIRST) array_push($first,$val);
+                if($val['grade_id'] == MENU_GRADE_SECOND) array_push($second,$val);
+                if($val['grade_id'] == MENU_GRADE_THIRD) array_push($third,$val);
             }
-            Session::set('first',$first);
-            Session::set('second',$second);
-            Session::set('third',$third);
+//            Session::set('first',$first);
+//            Session::set('second',$second);
+//            Session::set('third',$third);
 
-            foreach($second as $key => $val)
-            {
-                $tmp = array();
-                foreach($third as $k => $v)
-                {
-                    if($v['parent_id']==$val['id']) array_push($tmp,$v);
-                }
-                $second[$key]['sub_menu'] = $tmp;
-                unset($tmp);
-            }
 
             foreach($first as $key => $val)
             {
-                $tmp = array();
+                $tmp = [];
                 foreach($second as $k => $v)
                 {
-                    if($v['parent_id']==$val['id']) array_push($tmp,$v);
+                    if($v['parent_id']==$val['id'])
+                    {
+                        array_push($tmp,$v);
+                    }
                 }
-                $first[$key]['sub_menu'] = $tmp;
+                $val['sub_menu'] = $tmp;
+                array_push($permissionList,$val);
                 unset($tmp);
             }
-            Session::set('menu',$first);
         }
-
-        return $first;
+        return $permissionList;
 
     }
 
