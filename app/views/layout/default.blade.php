@@ -25,9 +25,24 @@
 <div id="header">
   <h1><a href="dashboard.html">Matrix Admin</a></h1>
 </div>
-<!--close-Header-part--> 
+<!--close-Header-part-->
 
+<?php
+$icon = array(
+        'icon icon-signal',
+        'icon icon-fire',
+        'icon icon-th',
+        'icon icon-inbox',
+        'icon icon-fullscreen',
+        'icon icon-th-list',
+        'icon icon-pencil',
+        'icon icon-user-md',
+        'icon icon-tint',
+        'icon icon-file',
+        'icon icon-info-sign',
+);
 
+?>
 <!--top-Header-menu-->
 <div id="user-nav" class="navbar navbar-inverse">
   <ul class="nav">
@@ -67,6 +82,17 @@
 
   <ul>
     <li class="active"><a href="index.html"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+    @foreach($menu as $key => $val)
+      <li class="submenu @if($currentURL->parent_id==$val['id']) active open @endif"><a href="/"><i class="{{$icon[$key]}}"></i> <span>{{$val['display_name']}}</span></a>
+        @if(is_array($val['sub_menu'])&&count($val['sub_menu']))
+          <ul>
+            @foreach($val['sub_menu'] as $k => $v)
+              <li class="@if($v['id']==$currentURL->id) active @endif"><a href="{{URL::action($v['action_url'])}}">{{$v['display_name']}}</a></li>
+            @endforeach
+          </ul>
+        @endif
+      </li>
+    @endforeach
     <li> <a href="charts.html"><i class="icon icon-signal"></i> <span>Charts &amp; graphs</span></a> </li>
     <li> <a href="widgets.html"><i class="icon icon-inbox"></i> <span>Widgets</span></a> </li>
     <li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
