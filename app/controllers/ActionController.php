@@ -12,9 +12,9 @@ class ActionController extends BaseController {
     {
         $password = Hash::make('secret');
         $message = urldecode(Input::get('message',''));
-        //echo $password;
+
         if (Auth::check()) {
-            return Redirect::to(URL::action('HomeController@getIndex'));
+            return Redirect::action('HomeController@getIndex');
         }
 
         return View::make('Action.login', array(
@@ -26,7 +26,7 @@ class ActionController extends BaseController {
     public function getLogout()
     {
         Auth::logout();
-        return Redirect::to(URL::action('ActionController@getLogin'));
+        return Redirect::action('ActionController@getLogin');
     }
 
     public function postLogin()

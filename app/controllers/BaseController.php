@@ -30,13 +30,15 @@ class BaseController extends Controller {
 
             View::share('menu',Cache::get($permissionKey));
             $currentURL = Route::currentRouteAction();
-            //echo $currentURL;exit();
             if($currentURL)
             {
                 $currentMenuInfo = Permission::where('action_url','=',$currentURL)->first();
-                //var_dump($currentMenuInfo);exit();
-                if(is_object($currentMenuInfo))
-                    View::share('currentURL',$currentMenuInfo);
+                if(!is_object($currentMenuInfo))
+                {
+                    $currentMenuInfo = new stdClass();
+                    $currentMenuInfo->id = $currentMenuInfo->parent_id = 0;
+                }
+                View::share('currentURL',$currentMenuInfo);
             }
 
             return Redirect::action('HomeController@getIndex');

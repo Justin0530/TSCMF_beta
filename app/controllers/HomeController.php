@@ -23,7 +23,7 @@ class HomeController extends BaseController {
     public function getIndex()
     {
         Utils::get_real_ip();
-		echo URL::action('ProvinceController@index');
+		//echo URL::action('ProvinceController@index');
 		//echo iconv_substr('2015年美国驻华大使馆节假日安排',0,33);
         return View::make('Home.Index');
     }

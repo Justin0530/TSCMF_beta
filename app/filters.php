@@ -43,7 +43,7 @@ Route::filter('auth', function()
 		}
 		else
 		{
-			return Redirect::guest(URL::action('ActionController@getLogin'));
+			return Redirect::action('ActionController@getLogin');
 		}
 	}
 });
