@@ -83,7 +83,7 @@
         <div class="page2bg adjustAuto">
             <div class="page2text1 adjustAutoText">创造丰富的作品</div>
             <div class="page2text2 adjustAutoText">不让复杂的设计软件拘束你的创意，用最简单有趣的方式制作海报、ppt、信息图、贺卡、名片等所有你想要的一切。</div>
-            <div class="page2img1 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/mages/2/22.png" /></div>
+            <div class="page2img1 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/2/22.png" /></div>
             <div class="page2img8 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/2/1.png" /></div>
             <!---
             <div class="page2img1 pageImg adjustAuto"><img src="http://eyuanku.qiniudn.com/2_2.png" /></div>
