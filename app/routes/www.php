@@ -6,8 +6,8 @@
  * Time: 下午5:56
  */
 Route::controller('/','WIndexController');
-Route::any('/SignIn','HomeController@getIndex');
-Route::any('/SignIn','HomeController@getIndex');
+Route::any('/SignIn','CommonController@signIn');
+Route::any('/SignIn','CommonController@signUp');
 Route::group(array('before' => 'auth'), function () {
 //    Route::get('/','HomeController@getIndex');
 //    Route::any('/permission/getPermission','PermissionController@getPermission');

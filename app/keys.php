@@ -9,6 +9,9 @@
 const APP_PUBLIC_PATH = '/app';
 const APP_SYSTEM_URL = '/app';
 
+const WWW_PUBLIC_PATH = '/www';
+const WWW_PUBLIC_URL  = '/www';
+
 const GRADE_TYPE_ALL     = '1';//全部权限
 const GRADE_TYPE_PART    = '2';//部分权限
 

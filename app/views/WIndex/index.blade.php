@@ -2,17 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="icon" href="favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-    <title>创客贴—线上图形设计工具,让每个人可以轻松设计出海报、ppt、信息图、名片等</title>
-    <meta name=”keywords” content=”设计工具，在线图形设计平台,创可贴,作图神器,海报,微博封面,banner,ppt,信息图,名片,邀请函,贺卡,协作设计,简单设计”>
-    <meta name=”description” content=”创客贴是一款简单易用、功能强大的线上图形设计工具，用户可使用平台提供的大量的图片、模板等设计元素，通过简单的拖拉拽设计出精美的海报、邀请函、ppt、信息图、名片等。”>
+    <link rel="icon" href="/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+    <title>欧范儿——您找工作我帮忙</title>
+    <meta name=”keywords” content=””>
+    <meta name=”description” content=””>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet"  href="css/index.css" type="text/css" />
-    <link rel="stylesheet"  href="css/animate.css" type="text/css" />
-    <link rel="stylesheet" href="css/jquery.minicolors.css">
-    <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="js/jquery.minicolors.js"></script>
+    <link rel="stylesheet"  href="{{WWW_PUBLIC_PATH}}/css/index.css" type="text/css" />
+    <link rel="stylesheet"  href="{{WWW_PUBLIC_PATH}}/css/animate.css" type="text/css" />
+    <link rel="stylesheet" href="{{WWW_PUBLIC_PATH}}/css/jquery.minicolors.css">
+    <script type="text/javascript" src="{{WWW_PUBLIC_PATH}}/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="{{WWW_PUBLIC_PATH}}/js/jquery.minicolors.js"></script>
     <script type="text/javascript">
         var browser={
             versions:function(){
@@ -37,7 +37,7 @@
             window.location.href="http://www.chuangkit.com/indexPhone";
         }
         else{
-            document.write("<script src=\"js/index.js\">"+"</scr"+"ipt>");
+            document.write("<script src=\"{{WWW_PUBLIC_PATH}}/js/index.js\">"+"</scr"+"ipt>");
         }
     </script>
 
@@ -47,7 +47,7 @@
 <div id="jiazai">
     <div class="jiazai_logo">
         <div class="logoBg"></div>
-        <img src="images/1/jiazai.png" width="100%" style="z-index: 2;position: relative;" />
+        <img src="{{WWW_PUBLIC_PATH}}/images/1/jiazai.png" width="100%" style="z-index: 2;position: relative;" />
     </div>
 </div>
 <div id="index_pageChose">
@@ -60,20 +60,20 @@
 </div>
 <div id="indexDiv">
     <div id="page1" class="indexPage row">
-        <img id="img" src="images/1/1.jpg" />
+        <img id="img" src="{{WWW_PUBLIC_PATH}}/images/1/1.jpg" />
         <div class="page1top adjustAuto"></div>
-        <div class="page1img1 page1img adjustAuto"><img src="images/1/1.png" /></div>
-        <div class="page1img2 page1img adjustAuto"><img src="images/1/2.png" /></div>
-        <div class="page1img3 page1img adjustAuto"><img src="images/1/3.png" /></div>
-        <div class="page1img4 page1img adjustAuto"><img src="images/1/4.png" /></div>
+        <div class="page1img1 page1img adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/1/1.png" /></div>
+        <div class="page1img2 page1img adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/1/2.png" /></div>
+        <div class="page1img3 page1img adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/1/3.png" /></div>
+        <div class="page1img4 page1img adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/1/4.png" /></div>
         <div class="page1Right adjustAuto">
-            <div class="logo adjustAuto"><img src="images/1/logo.png" /></div>
-            <div class="page1text1 adjustAutoText">贴近你的创意</div>
-            <div class="page1text2 adjustAutoText">从未想象的简单与有趣，创客贴给你全新的线上设计体验，随时随地开启设计，呈现你的创意和想法。</div>
-            <a href="login/index.html" target="_blank">
+            <div class="logo adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/1/logo.png" /></div>
+            <div class="page1text1 adjustAutoText">找工作/找员工</div>
+            <div class="page1text2 adjustAutoText">从未想象的简单与有趣，一次信息更新，好工作、好员工送上门，让您随意选择。总有一款是您想要的。</div>
+            <a href="{{URL::action('WIndexController@getLogin')}}" target="_blank">
                 <div class="sign adjustAutoText">注&nbsp;&nbsp;&nbsp;册</div>
             </a>
-            <a href="login/index.html" target="_blank">
+            <a href="{{URL::action('WIndexController@getLogin')}}" target="_blank">
                 <div class="login adjustAutoText">登&nbsp;&nbsp;&nbsp;录</div>
             </a>
         </div>
@@ -83,8 +83,8 @@
         <div class="page2bg adjustAuto">
             <div class="page2text1 adjustAutoText">创造丰富的作品</div>
             <div class="page2text2 adjustAutoText">不让复杂的设计软件拘束你的创意，用最简单有趣的方式制作海报、ppt、信息图、贺卡、名片等所有你想要的一切。</div>
-            <div class="page2img1 pageImg adjustAuto"><img src="images/2/22.png" /></div>
-            <div class="page2img8 pageImg adjustAuto"><img src="images/2/1.png" /></div>
+            <div class="page2img1 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/mages/2/22.png" /></div>
+            <div class="page2img8 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/2/1.png" /></div>
             <!---
             <div class="page2img1 pageImg adjustAuto"><img src="http://eyuanku.qiniudn.com/2_2.png" /></div>
             <div class="page2img2 pageImg adjustAuto"><img src="http://eyuanku.qiniudn.com/2_3.png" /></div>
@@ -109,12 +109,12 @@
         <div class="page3bg adjustAuto">
             <div class="page3text1 adjustAutoText">简单的拖拉拽</div>
             <div class="page3text2 adjustAutoText">搜索你需要的素材，通过拖拉拽即可完成素材的挑选与使用，这一切不需要下载任何插件或文件，让你更专注于自己的创意。</div>
-            <div class="page3img1 pageImg adjustAuto"><img src="images/3/1.png" /></div>
-            <div class="page3img2 pageImg adjustAuto"><img src="images/3/2.png" /></div>
-            <div class="page3img3 pageImg adjustAuto"><img src="images/3/3.png" /></div>
-            <div class="page3img4 pageImg adjustAuto"><img src="images/3/4.png" /></div>
-            <div class="page3img5 pageImg adjustAuto"><img src="images/3/5.png" /></div>
-            <div class="page3img6 pageImg adjustAuto"><img src="images/3/6.png" /></div>
+            <div class="page3img1 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/3/1.png" /></div>
+            <div class="page3img2 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/3/2.png" /></div>
+            <div class="page3img3 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/3/3.png" /></div>
+            <div class="page3img4 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/3/4.png" /></div>
+            <div class="page3img5 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/3/5.png" /></div>
+            <div class="page3img6 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/3/6.png" /></div>
         </div>
     </div>
 
@@ -123,14 +123,14 @@
         <div class="page4bg adjustAuto">
             <div class="page4text1 adjustAutoText">免费与尽情</div>
             <div class="page4text2 adjustAutoText">创客贴为你提供大量免费的无背景图片、高质量的摄影图片、网络字体、背景、模板等素材，方便你自由创意。上传自己的素材到云端，无论何时何地都能使用，再也不用担心找不到素材。</div>
-            <div class="page4img1 pageImg adjustAuto"><img src="images/4/1.png" /></div>
-            <div class="page4img2 pageImg adjustAuto"><img src="images/4/2.png" /></div>
-            <div class="page4img5 pageImg adjustAuto"><img src="images/4/5.png" /></div>
-            <div class="page4img6 pageImg adjustAuto"><img src="images/4/6.png" /></div>
-            <div class="page4img7 pageImg adjustAuto"><img src="images/4/7.png" /></div>
-            <div class="page4img8 pageImg adjustAuto"><img src="images/4/8.png" /></div>
-            <div class="page4img9 pageImg adjustAuto"><img src="images/4/9.png" /></div>
-            <div class="page4img10 pageImg adjustAuto"><img src="images/4/10.png" /></div>
+            <div class="page4img1 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/4/1.png" /></div>
+            <div class="page4img2 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/4/2.png" /></div>
+            <div class="page4img5 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/4/5.png" /></div>
+            <div class="page4img6 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/4/6.png" /></div>
+            <div class="page4img7 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/4/7.png" /></div>
+            <div class="page4img8 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/4/8.png" /></div>
+            <div class="page4img9 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/4/9.png" /></div>
+            <div class="page4img10 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/4/10.png" /></div>
         </div>
     </div>
 
@@ -141,25 +141,25 @@
         </div>
         <div class="page6text2 adjustAutoText">你可以分享设计到社交网络，富媒体的设计分享，让创意的展现不再是二维的世界；也可以输出成格式文件，平台为你提供高清的png、pdf格式输出，无论是传输还是打印印刷都将轻松实现。
         </div>
-        <div class="page6img1 pageImg adjustAuto"><img src="images/6/1.png" /></div>
-        <div class="page6img3 pageImg adjustAuto"><img src="images/6/3.png" /></div>
-        <div class="page6img2 pageImg adjustAuto"><img src="images/6/2.png" /></div>
-        <div class="page6img4 pageImg adjustAuto"><img src="images/6/4.png" /></div>
-        <div class="page6img5 pageImg adjustAuto"><img src="images/6/5.png" /></div>
+        <div class="page6img1 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/6/1.png" /></div>
+        <div class="page6img3 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/6/3.png" /></div>
+        <div class="page6img2 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/6/2.png" /></div>
+        <div class="page6img4 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/6/4.png" /></div>
+        <div class="page6img5 pageImg adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/6/5.png" /></div>
     </div>
     <div id="page6" class="indexPage row">
         <div class="page9top adjustAuto"></div>
         <div class="page9bottom adjustAuto"></div>
-        <div class="page9img5 page9img page9img11 adjustAuto"><img src="images/9/5.png" /></div>
-        <div class="page9img6 page9img adjustAuto"><img src="images/9/6.png" /></div>
-        <div class="page9img1 page9img adjustAuto"><img src="images/9/1.png" /></div>
-        <div class="page9img2 page9img adjustAuto"><img src="images/9/2.png" /></div>
-        <div class="page9img3 page9img adjustAuto"><img src="images/9/3.png" /></div>
-        <div class="page9img4 page9img adjustAuto"><img src="images/9/4.png" /></div>
-        <a href="login/index.html" target="_blank"><div class="page9img5 page9img adjustAuto"><img src="images/9/5.png" /></div></a>
-        <a href="login/index.html" target="_blank"><div class="page9img6 page9img adjustAuto"><img src="images/9/6.png" /></div></a>
-        <a href="login/index.html" target="_blank"><div class="page9img7 page9img adjustAuto"><img src="images/9/7.png" /></div></a>
-        <a href="login/index.html" target="_blank"><div class="page9img7 page9img adjustAuto"><img src="images/9/7.png" /></div></a>
+        <div class="page9img5 page9img page9img11 adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/9/5.png" /></div>
+        <div class="page9img6 page9img adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/9/6.png" /></div>
+        <div class="page9img1 page9img adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/9/1.png" /></div>
+        <div class="page9img2 page9img adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/9/2.png" /></div>
+        <div class="page9img3 page9img adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/9/3.png" /></div>
+        <div class="page9img4 page9img adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/9/4.png" /></div>
+        <a href="{{URL::action('WIndexController@getLogin')}}" target="_blank"><div class="page9img5 page9img adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/9/5.png" /></div></a>
+        <a href="{{URL::action('WIndexController@getLogin')}}" target="_blank"><div class="page9img6 page9img adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/9/6.png" /></div></a>
+        <a href="{{URL::action('WIndexController@getLogin')}}" target="_blank"><div class="page9img7 page9img adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/9/7.png" /></div></a>
+        <a href="{{URL::action('WIndexController@getLogin')}}" target="_blank"><div class="page9img7 page9img adjustAuto"><img src="{{WWW_PUBLIC_PATH}}/images/9/7.png" /></div></a>
 
     </div>
 </div>

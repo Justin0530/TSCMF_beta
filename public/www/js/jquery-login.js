@@ -5,7 +5,7 @@ $(document).ready(function(){
 	$("#bodyBg").css({
 		"width":document.body.clientWidth,
 		"height":document.body.scrollHeight,
-		"background":"url(images/login-bg.jpg)",
+		"background":"url(/www/images/login_bg.jpg)",
 		"z-index":"1",
 		"background-size":width*1.5+"px "+height*1.5+"px",
 		"background-position-x":-(width*1.5-width)/2,
