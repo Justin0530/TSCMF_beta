@@ -15,7 +15,7 @@ class FileController extends BaseController {
         $path = $this->target.'/'.date('Ym',time());
         if(!is_dir(public_path().$path))
         {
-            mkdir($path,644,true);
+            mkdir(public_path().$path,0777,true);
         }
         $this->target = $path;
     }

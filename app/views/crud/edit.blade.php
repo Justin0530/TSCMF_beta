@@ -39,7 +39,7 @@
 							<input type="hidden" name="{{$key}}" id="{{'ipt_'.$key}}" />
 							<div id="preview_{{$key}}">
 								@if(isset($data[$key])&&$data[$key])
-								<img src="{{$data[$key]}}">
+								<img width="80" src="{{$data[$key]}}">
 								@endif
 							</div>
 						</div>

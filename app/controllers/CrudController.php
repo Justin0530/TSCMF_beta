@@ -212,15 +212,24 @@ class CrudController extends BaseController
 	protected function saveObject($obj, $data, $admin_config)
 	{
 		foreach ($admin_config['items'] as $key => $value) {
-			if ($value['type'] === 'password') {
+			if ($value['type'] === 'password')
+			{
 				if ($data[$key] != '') {
 					$obj[$key] = Hash::make($data[$key]);
 				} else {
 					unset($obj[$key]);
 				}
-
-
-			} elseif ($value['type'] === 'plus_s') {
+			}
+			elseif ($value['type'] === 'image')
+			{
+				if ($data[$key] != '') {
+					$obj[$key] = $data[$key];
+				} else {
+					unset($obj[$key]);
+				}
+			}
+			elseif ($value['type'] === 'plus_s')
+			{
 				$plus_structure_k = Input::get($key . '_k');
 				$plus_structure_v = Input::get($key . '_v');
 				$plus_structure   = [];
@@ -232,7 +241,9 @@ class CrudController extends BaseController
 					}
 				}
 				$obj[$key] = ($plus_structure);
-			} elseif ($value['type'] === 'plus_d') {
+			}
+			elseif ($value['type'] === 'plus_d')
+			{
 				$plus_structure_k = Input::get($key . '_k');
 				$plus_structure_v = Input::get($key . '_v');
 				$plus_structure   = [];
@@ -244,7 +255,9 @@ class CrudController extends BaseController
 					}
 				}
 				$obj[$key] = ($plus_structure);
-			} else {
+			}
+			else
+			{
 				if(isset($value['isFunc'])&&$value['isFunc'])
 				{
 					$param = isset($value['isFuncParam'])?$data[$value['isFuncParam']]:'';
