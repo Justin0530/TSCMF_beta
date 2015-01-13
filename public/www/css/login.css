@@ -1,0 +1,257 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+body{
+	margin:0;
+	padding:0;
+	background:#F2F2F2;
+	font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei" ;
+}
+a{
+	display:block;
+}
+*, *:before, *:after {
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+#main{
+	width:100%;
+	
+}
+#loginMain{
+	margin:0px;
+}
+#bodyBg{
+	margin:0px;
+	position:absolute;
+	top:0px;
+	left:0px;
+	z-index:1;
+	background-size:cover;
+	background-position-y:-200px;
+}
+.forgetPassword{
+	margin-left: 250px;
+	color: #fff;
+	font-size:16px;
+	cursor:pointer;
+}
+#login a{
+	color:#a6b3bd;
+}
+#sign a{
+	color:#a6b3bd;
+}
+#sign{
+	position:relative;
+	top:100px;
+	margin:auto;
+	background:url(images/login-bg.jpg);
+}
+.login{
+	margin: 0 auto;
+	position: relative;
+	width:404px;
+	height:484px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background:rgba(0,0,0,0.5);
+	z-index:4;
+	margin-top: 200px;
+
+}
+.login .logo{
+	margin:0 auto;
+	width:170px;
+	height:70px;
+	background:url(../images/logo.png);
+	background-size:100%;
+}
+.logo:after{
+	content:"";
+    display:table;
+    clear:both;
+}
+.login_top{
+	width:100%;
+}
+.login_top:after{
+	content:"";
+    display:table;
+    clear:both;
+}
+.login_top .login_state{
+	float:left;
+	color:#aabaac;
+	width:100%;
+	margin-top:50px;
+}
+.loginState{
+	margin: 0 auto;
+	margin-top: 70px;
+	width: 268px;
+	height: 35px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 4px;
+	overflow: hidden;
+	margin-bottom: 15px;
+	border: 1px solid #2fc3d0;
+}
+.loginState .active{
+	background: #2fc3d0;
+}
+.loginState div{
+	float: left;
+	width: 133px;
+	text-align: center;
+	line-height: 35px;
+	height: 35px;
+	font-size: 16px;
+	color: #fff;
+
+}
+.login_top .login_state .active{
+	color:#FFF;
+}
+.login_form,.sign_form{
+	position:relative;
+}
+.login_form  .input,.sign_form  .input{
+	margin:auto;
+	margin-top:10px;
+	width:270px;
+	height:37px;
+	line-height:49px;
+	text-align:center;
+	position:auto;	
+}
+.input .errorMessage{
+	position:relative;
+	top:-37px;
+	margin:auto;
+	left:0px;
+	background:#fff;
+	color:red;
+	width:270px;
+	height:37px;
+	line-height: 37px;
+	opacity:0.7;
+	text-align: left;
+	padding-left:20px;
+	display:none;
+	border: 1px solid red;
+}
+#signButton:after{
+	content:"";
+    display:table;
+    clear:both;
+}
+.login_form input,.sign_form input{
+	position:relative;
+	display:block;
+	width:268px;
+	height:35px;
+	background:url(../images/home/input.png);
+	background:rgba(255,255,255,0.17);
+	border: none;
+	color:#FFF;
+	font-size: 16px;
+	padding-left:20px;
+	border:1px solid #353539;
+	box-shadow:0xp 0px 24px 24px #000;
+	outline: none;
+	line-height:20px;
+	outline:none;
+}
+.login_form input:focus,.sign_form input:focus{
+	border:2px solid #01c2df;
+}
+.login_form button,.sign_form button{
+	margin:auto;
+	width:270px;
+	height:36px;
+	margin-top:40px;
+	background:#2fc3d0;
+	border:0px;
+	cursor: pointer;
+	display:block;
+	color:#FFF;
+	font-size:16px;
+	line-height:36px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 4px;
+	transition: background 0.5s;
+	-moz-transition: background 0.5s;	/* Firefox 4 */
+	-webkit-transition: background 0.5s;	/* Safari 和 Chrome */
+	-o-transition: background 0.5s;	/* Opera */	
+	outline:none;
+	font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei" ;
+}
+.login_form button:hover,.sign_form button:hover{
+	background:#29a0aa;
+}
+.login_state div,.sign_form div{
+	cursor:pointer;
+}
+.errorSign{
+	margin-left:80px;
+	height: 30px;
+	line-height: 30px;
+	color: #F00;
+}
+#forgetPasswordButton{
+	display:none;
+}
+.sign_form{
+	display:none;
+}
+.signFormFoot button{
+	width: 110px;
+	height: 37px;
+	float: right;
+	margin-top: 0px;
+}
+.invitationCode{
+	width: 150px !important;
+	float: left;
+}
+a:link {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+a:hover {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+a:active {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #999;
+    font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei" ;
+    font-size: 16px;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #999;
+    font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei" ;
+    font-size: 16px;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #999;
+    font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei" ;
+    font-size: 16px;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #999;
+    font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei" ;
+    font-size: 16px;
+}
