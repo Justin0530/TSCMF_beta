@@ -1,14 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="icon" href="favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-<meta name="renderer" content="webkit">
-<title>登录</title>
-<link href="{{WWW_PUBLIC_PATH}}/css/login.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="{{WWW_PUBLIC_PATH}}/js/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="{{WWW_PUBLIC_PATH}}/js/jquery-login.js"></script>
-<script type="text/javascript">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="icon" href="favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+    <meta name="renderer" content="webkit">
+    <title>登录</title>
+    <link href="{{WWW_PUBLIC_PATH}}/css/login.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{{WWW_PUBLIC_PATH}}/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="{{WWW_PUBLIC_PATH}}/js/jquery.json-2.4.js"></script>
+    <script type="text/javascript" src="{{WWW_PUBLIC_PATH}}/js/jquery-login.js"></script>
+    <script type="text/javascript">
 var browser={
 versions:function(){
 var u = navigator.userAgent, app = navigator.appVersion;
@@ -29,7 +30,7 @@ ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
 }
 
 if(browser.versions.mobile || browser.versions.iPhone || browser.versions.android){
-    window.location.href="http://www.hqc203.com/login/phoneindex.html";
+    //window.location.href="http://www.hqc203.com/login/phoneindex.html";
 }
 else{
     document.write("<script src=\"{{WWW_PUBLIC_PATH}}/js/jquery-login.js\">"+"</scr"+"ipt>");

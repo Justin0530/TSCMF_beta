@@ -126,29 +126,27 @@ $(document).ready(function(){
 			$("#login_password").css("opacity","0");
 		} else{
 			$.ajax({       
-				url : '/rpc/site/rpc.service',
+				url : '/login',
 				type : 'POST',
-				contentType : "application/json;charset=utf-8",
 				dataType : "json",
-				data : $.toJSON({ 
-					"method" : "login.auth",
-					"params":[username,password,""],
-					"id" :  (new Date()).getTime()
-				}),
-				error : function(data) {
-					alert("error");
+				data : {
+					"username" : username,
+					"password": password
 				},
+				//error : function(data) {
+				//	alert("网络错误,请重试");
+				//},
 				success : function(data) {
-					if(!data.result.authenticated){
-						if (data.result.message === "") {
-							document.location = data.result.nexturl;
-							return false;
-						//window.location = "../home/discover"
-						}
-						$("#login_password").next().html(data.result.message);
+					if(data.status==100000)
+                    {
+							document.location = data.redirect;
+					}
+                    else
+                    {
+						$("#login_password").next().html(data.msg);
 						$("#login_password").next().fadeIn(500);
 						$("#login_password").css("opacity","0");
-						$("#login_username").next().html(data.result.message);
+						$("#login_username").next().html(data.msg);
 						$("#login_username").next().fadeIn(500);
 						$("#login_username").css("opacity","0");
 					}

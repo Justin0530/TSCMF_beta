@@ -14,6 +14,11 @@ class WCommonController extends Controller
      */
     public function signIn()
     {
+        if(Input::getMethod()=='POST')
+        {
+            var_dump(Input::all());
+            exit();
+        }
         return View::make('WIndex.index');
     }
 
