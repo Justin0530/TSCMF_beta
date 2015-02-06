@@ -30,7 +30,7 @@ ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
 }
 
 if(browser.versions.mobile || browser.versions.iPhone || browser.versions.android){
-    //window.location.href="http://www.hqc203.com/login/phoneindex.html";
+    //window.location.href="###";
 }
 else{
     document.write("<script src=\"{{WWW_PUBLIC_PATH}}/js/jquery-login.js\">"+"</scr"+"ipt>");
@@ -51,6 +51,11 @@ else{
 		</div>
 		<div class="sign_form">
             <form name="signForm" id="signForm" action="" method="post" autocomplete="false">
+				<div class="input radiotype">
+					<label><input type="radio" name="type" value="1" checked />个人</label>
+					<label><input type="radio" name="type" value="2"  />公司</label>
+					<div class="errorMessage"></div>
+				</div>
                 <div class="input">
                 	<input onfocus="this.type='mail'" onblur="this.placeholder='请输入邮箱注册'" placeholder="请输入邮箱注册" id="sign_username" name="username"  value="" autocomplete="false" />
                 	<div class="errorMessage"></div>

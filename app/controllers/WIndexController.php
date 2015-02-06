@@ -16,7 +16,9 @@ class WIndexController extends Controller
      */
     public function getIndex()
     {
+
         return View::make('WIndex.index');
+
     }
 
     /**
@@ -28,7 +30,26 @@ class WIndexController extends Controller
      */
     public function getLogin()
     {
-        return View::make('WIndex.login');
+        if(Session::has('member'))
+        {
+            $member = (object)Session::get('member');
+            if($member->type == MEMBER_TYPE_PERSONAL)
+            {
+                return Redirect::action('WPersonalController@getIndex');
+            }
+            elseif($member->type == MEMBER_TYPE_COMPANY)
+            {
+                return Redirect::action('WCompanyController@getIndex');
+            }
+            else
+            {
+                return Redirect::action('WIndexController@getIndex');
+            }
+        }
+        else
+        {
+            return View::make('WIndex.login');
+        }
     }
 
     /**
@@ -38,20 +59,14 @@ class WIndexController extends Controller
      * @since $id
      * @return mixed
      */
-    public function getLogintt()
+    public function postLogin()
     {
         $member = WAuth::memberAuth(Input::get('username'),Input::get('password'));
         $data = [];
-        var_dump($member);
         if($member)
         {
             $data['status'] = API_STATUS_CODE_100000;
-            //Session::set('t','dd');echo 'here';
-            var_dump(get_class_vars($member));
-            var_dump($member->toArray());
             Session::set('member',$member->toArray());
-            //$_SESSION['member'] = $member;
-            //var_dump(Session::get('member'));
             if($member->type == MEMBER_TYPE_PERSONAL) $data['redirect'] = URL::action('WPersonalController@getIndex');
             if($member->type == MEMBER_TYPE_COMPANY) $data['redirect'] = URL::action('WCompanyController@getIndex');
         }
@@ -60,7 +75,7 @@ class WIndexController extends Controller
             $data['status'] = API_STATUS_CODE_100001;
             $data['msg'] = '用户名或密码错误';
         }
-        echo json_encode($data);
-        exit();
+
+        return Response::json($data);
     }
 }

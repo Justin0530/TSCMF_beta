@@ -56,16 +56,17 @@ Route::filter('auth.basic', function()
 
 Route::filter('wAuth',function()
 {
-    $member = Session::get('member');
-    if(isset($member)&is_object($member))
+
+    if(Session::has('member'))
     {
+        $member = (object)Session::get('member');
         if($member->type == MEMBER_TYPE_PERSONAL)
         {
-            return Redirect::action('WPersonalController@index');
+            return Redirect::action('WPersonalController@getIndex');
         }
         elseif($member->type == MEMBER_TYPE_COMPANY)
         {
-            return Redirect::action('WCompanyController@index');
+            return Redirect::action('WCompanyController@getIndex');
         }
         else
         {
@@ -74,7 +75,7 @@ Route::filter('wAuth',function()
     }
     else
     {
-        return Redirect::action('WCommonController@signIn');
+        return Redirect::action('WIndexController@getLogin');
     }
 });
 /*
