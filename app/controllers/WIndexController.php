@@ -78,4 +78,19 @@ class WIndexController extends Controller
 
         return Response::json($data);
     }
+
+    /**
+     * @todo 用户注册信息处理
+     *
+     * @author Justin.W
+     * @since $id
+     * @return mixed
+     *
+     */
+    public function postRegister()
+    {
+        $registerInfo = Input::all();
+        $result = WMemberLogic::register($registerInfo);
+        return Response::json($result);
+    }
 }

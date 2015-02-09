@@ -69,7 +69,7 @@ else{
                 	<div class="errorMessage"></div>
                 </div>
                 <div class="signFormFoot input">
-                	<input class="invitationCode" onfocus="this.type='text'" onblur="this.placeholder='邀请码'" placeholder="邀请码" id="sign_username" name="username"  value="" autocomplete="false" />
+                	<!--input class="invitationCode" onfocus="this.type='text'" onblur="this.placeholder='邀请码'" placeholder="邀请码" id="sign_username" name="username"  value="" autocomplete="false" /-->
                 	<button id="user_sign" type="button">注&nbsp;册</button>
                 </div>
 

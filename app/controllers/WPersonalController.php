@@ -10,7 +10,7 @@ class WPersonalController extends WBaseController
     public function getIndex()
     {
         echo 'hello world,Personal';
-        echo '<br />';
+        echo '<br />';exit();
         return Response::make('complete');
     }
 }

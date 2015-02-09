@@ -156,6 +156,7 @@ $(document).ready(function(){
 	});
 	$(document).ready(function(e) {
 		$("#user_sign").on("click",function(){
+			var type = $('input[name="type"]:checked').val();
 			var username = 	document.getElementById("sign_username").value;
 			var password = document.getElementById("sign_password").value;
 			var password2 = document.getElementById("sign_password2").value;
@@ -190,21 +191,29 @@ $(document).ready(function(){
 					}
 					else{
 						$.ajax({       
-							url : '/rpc/site/rpc.service',
+							url : '/register',
 							type : 'POST',
 							contentType : "application/json;charset=utf-8",
 							dataType : "json",
-							data : $.toJSON({ 
-								"method" : "login.sign",
-								"params":[username,password,""],
-								"id" :  (new Date()).getTime()
+							data : $.toJSON({
+								"type"     : type,
+								"username" : username,
+								"password" : password,
+								"passwords": password2
 							}),
 							error : function(data) {
 								alert(data);
 							},
 							success : function(data) {
 								if(data.result === "success"){
-									window.location.href="/"; 
+									if(data.type == "1" )
+									{
+										window.location.href="/personal";
+									}
+									else
+									{
+										window.location.href="/company";
+									}
 								}
 								else if(data.result === "confirm")
 								{
