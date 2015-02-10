@@ -203,6 +203,7 @@ $(document).ready(function(){
 							}),
 							error : function(data) {
 								alert(data);
+								return false;
 							},
 							success : function(data) {
 								if(data.result === "success"){

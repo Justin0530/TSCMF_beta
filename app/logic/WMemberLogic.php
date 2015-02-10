@@ -26,13 +26,15 @@ class WMemberLogic {
             if($registerInfo['password']==$registerInfo['passwords'])
             {
                 $registerInfo['email'] = $registerInfo['username'];
+                $password = $registerInfo['password'];
                 $registerInfo['password'] = Hash::make($registerInfo['password']);
                 $registerInfo['status'] = MEMBER_STATUS_ONE; //跳过了邮箱验证
                 $member = WMember::create($registerInfo);
                 $data['type'] = $member->type;
                 if($member &&$registerInfo['status'] = MEMBER_STATUS_ONE)
                 {
-                    WAuth::memberAuth($member->email,$member->password);
+                    $regMember = WAuth::memberAuth($member->email,$password);
+                    if($regMember) Session::set('member',$regMember->toArray());
                     $data['result'] = 'success';
                 }
                 else if($member)

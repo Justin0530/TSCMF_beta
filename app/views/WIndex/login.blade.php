@@ -32,9 +32,7 @@ ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
 if(browser.versions.mobile || browser.versions.iPhone || browser.versions.android){
     //window.location.href="###";
 }
-else{
-    document.write("<script src=\"{{WWW_PUBLIC_PATH}}/js/jquery-login.js\">"+"</scr"+"ipt>");
-}
+
 </script>
 </head>
 <body>
@@ -50,7 +48,7 @@ else{
 			</div>
 		</div>
 		<div class="sign_form">
-            <form name="signForm" id="signForm" action="" method="post" autocomplete="false">
+            <form name="signForm" id="signForm" >
 				<div class="input radiotype">
 					<label><input type="radio" name="type" value="1" checked />个人</label>
 					<label><input type="radio" name="type" value="2"  />公司</label>

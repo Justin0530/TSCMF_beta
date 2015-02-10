@@ -93,4 +93,52 @@ class WIndexController extends Controller
         $result = WMemberLogic::register($registerInfo);
         return Response::json($result);
     }
+
+
+    /**
+     * @todo 前端用户退出登录
+     *
+     * @author Justin.W
+     * @since $id
+     * @return mixed
+     *
+     */
+    public function getLogout()
+    {
+        Session::flush();
+        return Redirect::action('WIndexController@getIndex');
+    }
+
+    /**
+     * @todo 根据用户类型分发请求
+     *
+     * @author Justin.W
+     * @since $id
+     * @return mixed
+     *
+     */
+    public function dispatch()
+    {
+        if(Session::has('member'))
+        {
+            $member = (Object)Session::get('member');
+            if(isset($member->type)&&$member->type==MEMBER_TYPE_PERSONAL)
+            {
+                return Redirect::action('WPersonalController@getIndex');
+            }
+            else if(isset($member->type)&&$member->type==MEMBER_TYPE_COMPANY)
+            {
+                return Redirect::action('WCompanyController@getIndex');
+            }
+            else
+            {
+                Session::forget('member');
+                return Redirect::action('WIndexController@getLogin');
+            }
+        }
+        else
+        {
+            return Redirect::action('WIndexController@getLogin');
+        }
+    }
 }
