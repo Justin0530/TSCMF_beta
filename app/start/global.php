@@ -51,8 +51,21 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 App::error(function(Exception $exception, $code)
 {
 	Log::error($exception);
+	$debug = Config::get('app.debug');
+	Log::error($exception);
+	if(!$debug){
+		return View::make('common.500');
+	}
 });
 
+App::missing(function($exception)
+{
+	$debug = Config::get('app.debug');
+	Log::error($exception);
+	if(!$debug){
+		return View::make('common.404');
+	}
+});
 /*
 |--------------------------------------------------------------------------
 | Maintenance Mode Handler
@@ -69,6 +82,12 @@ App::down(function()
 	return Response::make("Be right back!", 503);
 });
 
+DB::listen(function($sql, $bindings, $time)
+{
+	$sql = str_replace('?','%s',$sql);
+	$sql = vsprintf($sql, $bindings);
+	Log::info($sql.' time:'.$time);
+});
 /*
 |--------------------------------------------------------------------------
 | Require The Filters File

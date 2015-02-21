@@ -2,7 +2,15 @@
 
 class WMember extends Eloquent
 {
-    protected $fillable = [];
+    protected $fillable = [
+        'username',
+        'email',
+        'mobile',
+        'password',
+        'avatar',
+        'type',
+        'status'
+    ];
     protected $table = 'member';
 
 

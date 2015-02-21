@@ -11,9 +11,6 @@ class WPersonalController extends WBaseController
     {
         echo 'hello world,Personal';
         echo '<br />';
-        //$member = $_SESSION['member']; //Session::get('member');
-        var_dump(Session::get('t'));
-        var_dump(Session::all());
-        exit();
+        return Response::make('complete');
     }
 }
